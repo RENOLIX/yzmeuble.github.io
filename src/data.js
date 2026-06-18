@@ -38,6 +38,30 @@ const armadaImages = [
   '/yzmeuble.github.io/images/armada/10-chevet-armoire.jpeg',
 ]
 
+const evoraImages = [
+  '/yzmeuble.github.io/images/evora/05-chambre-complete.jpeg',
+  '/yzmeuble.github.io/images/evora/11-ensemble-lit-armoire.jpeg',
+  '/yzmeuble.github.io/images/evora/10-ensemble-lit-coiffeuse.jpeg',
+  '/yzmeuble.github.io/images/evora/21-lit-face.jpeg',
+  '/yzmeuble.github.io/images/evora/02-armoire-fermee.jpeg',
+  '/yzmeuble.github.io/images/evora/08-armoire-face.jpeg',
+  '/yzmeuble.github.io/images/evora/06-armoire-ouverte-face.jpeg',
+  '/yzmeuble.github.io/images/evora/01-armoire-angle.jpeg',
+  '/yzmeuble.github.io/images/evora/18-armoire-angle-ouverte.jpeg',
+  '/yzmeuble.github.io/images/evora/19-armoire-droite-ouverte.jpeg',
+  '/yzmeuble.github.io/images/evora/20-armoire-detail.jpeg',
+  '/yzmeuble.github.io/images/evora/04-coiffeuse-face.jpeg',
+  '/yzmeuble.github.io/images/evora/03-coiffeuse-angle.jpeg',
+  '/yzmeuble.github.io/images/evora/12-coiffeuse-rangements.jpeg',
+  '/yzmeuble.github.io/images/evora/07-chevet-gauche.jpeg',
+  '/yzmeuble.github.io/images/evora/09-chevet-droit.jpeg',
+  '/yzmeuble.github.io/images/evora/13-chevet-face.jpeg',
+  '/yzmeuble.github.io/images/evora/14-chevet-detail.jpeg',
+  '/yzmeuble.github.io/images/evora/15-chevet-ouvert.jpeg',
+  '/yzmeuble.github.io/images/evora/16-chevet-ferme.jpeg',
+  '/yzmeuble.github.io/images/evora/17-chevet-double-ouvert.jpeg',
+]
+
 export const categories = [
   {
     id: 'chambres',
@@ -92,6 +116,29 @@ export const products = [
       'Ensemble complet',
       'Tête de lit éclairée',
       'Nombreux rangements',
+      'Livraison sur demande',
+    ],
+  },
+  {
+    id: 'chambre-evora',
+    name: 'Chambre Evora',
+    category: 'chambres',
+    label: 'Disponible sur devis',
+    summary: 'Evora est une chambre complète au style chaleureux, dominée par un bois brun foncé associé à des panneaux noirs et un capitonnage beige. Le lit présente une tête et un pied rembourrés, l’armoire offre de nombreux rangements avec un grand miroir central, et la coiffeuse réunit tiroirs, placards et miroir assorti.',
+    images: evoraImages,
+    finishes: ['Bois brun foncé', 'Panneaux noirs', 'Capitonnage beige'],
+    includes: [
+      'Lit double avec panneaux capitonnés',
+      'Deux tables de chevet à deux tiroirs',
+      'Grande armoire avec miroir central',
+      'Rangements avec étagères et penderie',
+      'Coiffeuse avec grand miroir',
+      'Placards et tiroirs intégrés',
+    ],
+    details: [
+      'Ensemble complet',
+      'Grand miroir central',
+      'Rangements généreux',
       'Livraison sur demande',
     ],
   },

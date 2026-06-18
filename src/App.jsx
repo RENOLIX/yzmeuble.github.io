@@ -19,11 +19,10 @@ function ScrollToTop() {
   return null
 }
 
-function Logo({ light = false }) {
+function Logo() {
   return (
-    <Link to="/" className={`logo ${light ? 'logo-light' : ''}`} aria-label="YZ Meuble, accueil">
-      <span className="logo-mark">YZ</span>
-      <span className="logo-text">MEUBLE<small>CHAMBRES À COUCHER</small></span>
+    <Link to="/" className="logo" aria-label="YZ Meuble, accueil">
+      <img src="/yzmeuble.github.io/images/logo-yz-meuble.png" alt="YZ Meuble — Meubles et mobilier d’intérieur" />
     </Link>
   )
 }
@@ -77,7 +76,7 @@ function Footer() {
         <Link to="/devis" className="circle-cta" aria-label="Demander un devis"><ArrowRight /></Link>
       </div>
       <div className="footer-grid">
-        <div className="footer-brand"><Logo light /><p>YZ Meuble est spécialisé dans la vente de chambres à coucher complètes en Algérie.</p></div>
+        <div className="footer-brand"><Logo /><p>YZ Meuble est spécialisé dans la vente de chambres à coucher complètes en Algérie.</p></div>
         <div><h4>Nos chambres</h4><Link to="/collections">Tous les modèles</Link><Link to="/produit/chambre-kachmir">Chambre Kachmir</Link><Link to="/produit/chambre-armada">Chambre Armada</Link></div>
         <div><h4>Informations</h4><Link to="/a-propos">À propos</Link><Link to="/contact">Contact</Link><a href={waLink('Bonjour YZ Meuble, je souhaite connaître vos modèles de chambres à coucher.')}>WhatsApp</a></div>
         <div><h4>Nous joindre</h4><a href={waLink('Bonjour YZ Meuble, je souhaite avoir plus d’informations.')}>0557 07 79 85</a><span>Algérie</span><a href="#" aria-label="Instagram YZ Meuble"><Instagram size={18} /> Instagram</a></div>

@@ -220,7 +220,7 @@ function ProductPage() {
         </div>
       </section>
       <section className="detail-strip">{product.details.map((x, i) => <div key={x}><span>0{i + 1}</span>{x}</div>)}</section>
-      {related.length > 0 && <section className="section related"><SectionTitle eyebrow="Dans le même univers" title="Vous aimerez<br/><em>peut-être aussi.</em>" /><div className="products-grid">{related.map(ProductCard)}</div></section>}
+      {related.length > 0 && <section className="section related"><SectionTitle eyebrow="Dans le même univers" title="Vous aimerez<br/><em>peut-être aussi.</em>" /><div className="products-grid">{related.map((item, i) => <ProductCard key={item.id} product={item} index={i} />)}</div></section>}
     </>
   )
 }

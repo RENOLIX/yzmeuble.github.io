@@ -40,8 +40,8 @@ function Header() {
     ['/', 'Accueil'],
     ['/collections', 'Nos chambres'],
     ['/produit/chambre-kachmir', 'Kachmir'],
+    ['/produit/chambre-armada', 'Armada'],
     ['/a-propos', 'À propos'],
-    ['/contact', 'Contact'],
   ]
   return (
     <>
@@ -78,7 +78,7 @@ function Footer() {
       </div>
       <div className="footer-grid">
         <div className="footer-brand"><Logo light /><p>YZ Meuble est spécialisé dans la vente de chambres à coucher complètes en Algérie.</p></div>
-        <div><h4>Nos chambres</h4><Link to="/collections">Tous les modèles</Link><Link to="/produit/chambre-kachmir">Chambre Kachmir</Link><Link to="/devis">Demander un devis</Link></div>
+        <div><h4>Nos chambres</h4><Link to="/collections">Tous les modèles</Link><Link to="/produit/chambre-kachmir">Chambre Kachmir</Link><Link to="/produit/chambre-armada">Chambre Armada</Link></div>
         <div><h4>Informations</h4><Link to="/a-propos">À propos</Link><Link to="/contact">Contact</Link><a href={waLink('Bonjour YZ Meuble, je souhaite connaître vos modèles de chambres à coucher.')}>WhatsApp</a></div>
         <div><h4>Nous joindre</h4><a href={waLink('Bonjour YZ Meuble, je souhaite avoir plus d’informations.')}>0557 07 79 85</a><span>Algérie</span><a href="#" aria-label="Instagram YZ Meuble"><Instagram size={18} /> Instagram</a></div>
       </div>
@@ -145,15 +145,15 @@ function Home() {
       </section>
 
       <section className="section selected-products">
-        <div className="title-row"><SectionTitle eyebrow="Notre premier modèle" title="Découvrez la chambre<br/><em>Kachmir.</em>" /><Link to="/produit/chambre-kachmir" className="text-link">Ouvrir la fiche complète <ArrowRight /></Link></div>
-        <div className="products-grid single-product"><ProductCard product={kachmir} /></div>
+        <div className="title-row"><SectionTitle eyebrow="Nos modèles disponibles" title="Deux chambres complètes,<br/><em>deux styles différents.</em>" /><Link to="/collections" className="text-link">Comparer les modèles <ArrowRight /></Link></div>
+        <div className="products-grid">{products.map((product, i) => <ProductCard key={product.id} product={product} index={i} />)}</div>
       </section>
 
       <section className="process section">
         <SectionTitle eyebrow="Commander simplement" title="De la découverte du modèle<br/><em>à votre demande de devis.</em>" align="center" />
         <div className="process-grid">
           {[
-            [Search, '01', 'Découvrez', 'Consultez les vraies photos, la composition et les détails de la chambre Kachmir.'],
+            [Search, '01', 'Découvrez', 'Consultez les vraies photos et la composition des chambres Kachmir et Armada.'],
             [MessageCircle, '02', 'Demandez votre devis', 'Envoyez votre nom, votre ville et votre demande directement sur WhatsApp.'],
             [Truck, '03', 'Organisez la livraison', 'Nous vous confirmons les informations du modèle et les possibilités de livraison.'],
           ].map(([Icon, n, t, d]) => <div className="process-card" key={n}><span className="process-n">{n}</span><div className="process-icon"><Icon /></div><h3>{t}</h3><p>{d}</p></div>)}
@@ -179,7 +179,7 @@ function Collections() {
       <section className="catalog section">
         <div className="filter-bar">
           <div>{[['tous','Tout voir'], ...categories.map(c => [c.id, c.name])].map(([id, label]) => <button key={id} onClick={() => setParams(id === 'tous' ? {} : { categorie: id })} className={active === id ? 'active' : ''}>{label}</button>)}</div>
-          <span>{visible.length} modèle disponible</span>
+          <span>{visible.length} modèle{visible.length > 1 ? 's' : ''} disponible{visible.length > 1 ? 's' : ''}</span>
         </div>
         <div className="products-grid">{visible.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}</div>
       </section>
@@ -196,6 +196,7 @@ function ProductPage() {
   const { id } = useParams()
   const product = products.find(p => p.id === id)
   const [mainImage, setMainImage] = useState(product?.images[0])
+  useEffect(() => setMainImage(product?.images[0]), [product?.id])
   if (!product) return <NotFound />
   const cat = categories.find(c => c.id === product.category)
   const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3)
@@ -212,7 +213,7 @@ function ProductPage() {
             <p className="eyebrow">{cat?.name}</p><h1>{product.name}</h1><p className="product-summary">{product.summary}</p>
             <div className="info-block"><h3>Composition</h3><ul>{product.includes.map(x => <li key={x}><Check size={16} />{x}</li>)}</ul></div>
             <div className="info-block"><h3>Style et finitions visibles</h3><div className="finish-list">{product.finishes.map((x, i) => <span key={x}><i className={`finish-${i}`}></i>{x}</span>)}</div></div>
-            <Link to={`/devis?produit=${product.id}`} className="button button-wide">Demander le devis Kachmir <ArrowRight size={17} /></Link>
+            <Link to={`/devis?produit=${product.id}`} className="button button-wide">Demander le devis {product.name.replace('Chambre ', '')} <ArrowRight size={17} /></Link>
             <a href={waLink(`Bonjour YZ Meuble, je suis intéressé(e) par le modèle ${product.name}. Pouvez-vous me renseigner ?`)} target="_blank" rel="noreferrer" className="whatsapp-link"><MessageCircle size={19} /> Poser une question sur WhatsApp</a>
             <div className="reassurance"><span><BedDouble />Chambre complète</span><span><Truck />Livraison sur demande</span><span><MessageCircle />Devis sur WhatsApp</span></div>
           </div>
@@ -268,10 +269,10 @@ function Services() {
       <section className="services section">
         <SectionTitle eyebrow="Comment ça marche" title="Choisir votre chambre,<br/><em>sans complication.</em>" />
         <div className="services-grid">
-          {[[Search,'Consultez le modèle','Parcourez toutes les photos et vérifiez la composition de la chambre.'],[BedDouble,'Choisissez votre chambre','Sélectionnez Kachmir ou l’un des prochains modèles qui seront ajoutés.'],[MessageCircle,'Envoyez votre demande','Le formulaire prépare un message complet avec votre nom, ville et modèle souhaité.'],[Truck,'Confirmez la livraison','Échangez directement avec YZ Meuble pour les modalités disponibles dans votre région.']].map(([Icon,t,d],i) => <article key={t}><span>0{i+1}</span><Icon /><h3>{t}</h3><p>{d}</p></article>)}
+          {[[Search,'Consultez les modèles','Parcourez les photos et vérifiez la composition de chaque chambre.'],[BedDouble,'Choisissez votre chambre','Sélectionnez la chambre Kachmir ou la chambre Armada.'],[MessageCircle,'Envoyez votre demande','Le formulaire prépare un message complet avec votre nom, ville et modèle souhaité.'],[Truck,'Confirmez la livraison','Échangez directement avec YZ Meuble pour les modalités disponibles dans votre région.']].map(([Icon,t,d],i) => <article key={t}><span>0{i+1}</span><Icon /><h3>{t}</h3><p>{d}</p></article>)}
         </div>
       </section>
-      <section className="made-to-measure"><div><p className="eyebrow light">Besoin d’une information ?</p><h2>Parlez directement<br />avec <em>YZ Meuble.</em></h2></div><div><p>Posez vos questions sur le modèle Kachmir, sa composition et les possibilités de livraison. Nous vous répondons directement sur WhatsApp au 0557 07 79 85.</p><Link to="/devis?produit=chambre-kachmir" className="button button-light">Demander un devis <ArrowRight size={17} /></Link></div></section>
+      <section className="made-to-measure"><div><p className="eyebrow light">Besoin d’une information ?</p><h2>Parlez directement<br />avec <em>YZ Meuble.</em></h2></div><div><p>Posez vos questions sur Kachmir ou Armada, leur composition et les possibilités de livraison. Nous vous répondons directement sur WhatsApp au 0557 07 79 85.</p><Link to="/devis" className="button button-light">Demander un devis <ArrowRight size={17} /></Link></div></section>
       <QuoteBanner />
     </>
   )
@@ -289,11 +290,11 @@ function Inspirations() {
 }
 
 function Contact() {
-  return <section className="contact-page section"><div className="contact-copy"><p className="eyebrow">Contacter YZ Meuble</p><h1>Une question sur<br /><em>la chambre Kachmir ?</em></h1><p>Écrivez-nous sur WhatsApp pour connaître les informations du modèle, sa disponibilité et les possibilités de livraison dans votre ville.</p><div className="contact-cards"><a href={waLink('Bonjour YZ Meuble, je souhaite avoir des informations sur la chambre Kachmir.')} target="_blank" rel="noreferrer"><MessageCircle /><div><span>WhatsApp</span><strong>0557 07 79 85</strong></div><ArrowRight /></a><div><Clock3 /><div><span>Type de contact</span><strong>Réponse directe sur WhatsApp</strong></div></div></div></div><div className="contact-form-card"><h2>Demande de devis</h2><QuoteForm compact /></div></section>
+  return <section className="contact-page section"><div className="contact-copy"><p className="eyebrow">Contacter YZ Meuble</p><h1>Une question sur<br /><em>une de nos chambres ?</em></h1><p>Écrivez-nous sur WhatsApp pour connaître les informations sur Kachmir ou Armada, leur disponibilité et les possibilités de livraison dans votre ville.</p><div className="contact-cards"><a href={waLink('Bonjour YZ Meuble, je souhaite avoir des informations sur vos chambres Kachmir et Armada.')} target="_blank" rel="noreferrer"><MessageCircle /><div><span>WhatsApp</span><strong>0557 07 79 85</strong></div><ArrowRight /></a><div><Clock3 /><div><span>Type de contact</span><strong>Réponse directe sur WhatsApp</strong></div></div></div></div><div className="contact-form-card"><h2>Demande de devis</h2><QuoteForm compact /></div></section>
 }
 
 function QuoteBanner() {
-  return <section className="quote-banner"><div><p className="eyebrow light">La chambre Kachmir vous plaît ?</p><h2>Demandez les informations<br /><em>pour votre ville.</em></h2></div><p>Indiquez votre nom, votre numéro et votre ville. Votre demande sera préparée puis ouverte directement dans WhatsApp.</p><Link to="/devis?produit=chambre-kachmir" className="button button-light">Demander mon devis <ArrowRight size={17} /></Link></section>
+  return <section className="quote-banner"><div><p className="eyebrow light">Kachmir ou Armada vous plaît ?</p><h2>Demandez les informations<br /><em>pour votre ville.</em></h2></div><p>Indiquez votre nom, votre numéro, votre ville et le modèle choisi. Votre demande sera ouverte directement dans WhatsApp.</p><Link to="/devis" className="button button-light">Demander mon devis <ArrowRight size={17} /></Link></section>
 }
 
 function NotFound() {

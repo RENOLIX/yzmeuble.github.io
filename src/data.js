@@ -15,6 +15,29 @@ const kachmirImages = [
   '/yzmeuble.github.io/images/kachmir/07-eclairage.jpeg',
 ]
 
+const armadaImages = [
+  '/yzmeuble.github.io/images/armada/04-chambre-complete.jpeg',
+  '/yzmeuble.github.io/images/armada/03-ensemble-armoire.jpeg',
+  '/yzmeuble.github.io/images/armada/02-ensemble-coiffeuse.jpeg',
+  '/yzmeuble.github.io/images/armada/17-lit-face.jpeg',
+  '/yzmeuble.github.io/images/armada/16-lit-angle.jpeg',
+  '/yzmeuble.github.io/images/armada/01-armoire-face.jpeg',
+  '/yzmeuble.github.io/images/armada/20-armoire-vitrines.jpeg',
+  '/yzmeuble.github.io/images/armada/19-armoire-penderie.jpeg',
+  '/yzmeuble.github.io/images/armada/18-armoire-etageres.jpeg',
+  '/yzmeuble.github.io/images/armada/15-coiffeuse-fermee.jpeg',
+  '/yzmeuble.github.io/images/armada/12-coiffeuse-ouverte.jpeg',
+  '/yzmeuble.github.io/images/armada/11-coiffeuse-tiroirs.jpeg',
+  '/yzmeuble.github.io/images/armada/13-coiffeuse-colonne.jpeg',
+  '/yzmeuble.github.io/images/armada/14-colonne-ouverte.jpeg',
+  '/yzmeuble.github.io/images/armada/05-chevet-en-place.jpeg',
+  '/yzmeuble.github.io/images/armada/09-chevet-face.jpeg',
+  '/yzmeuble.github.io/images/armada/06-chevet-tiroir.jpeg',
+  '/yzmeuble.github.io/images/armada/07-chevet-ouvert.jpeg',
+  '/yzmeuble.github.io/images/armada/08-chevet-double-rangement.jpeg',
+  '/yzmeuble.github.io/images/armada/10-chevet-armoire.jpeg',
+]
+
 export const categories = [
   {
     id: 'chambres',
@@ -46,6 +69,29 @@ export const products = [
       'Ensemble complet',
       'Lit avec coffre',
       'Éclairage intégré',
+      'Livraison sur demande',
+    ],
+  },
+  {
+    id: 'chambre-armada',
+    name: 'Chambre Armada',
+    category: 'chambres',
+    label: 'Disponible sur devis',
+    summary: 'Armada est une chambre complète aux tons crème et gris, rehaussée par des détails brun foncé et dorés. Son lit capitonné est accompagné d’une large tête de lit avec éclairages intégrés. L’armoire associe quatre portes centrales à deux vitrines latérales éclairées, tandis que la coiffeuse offre plusieurs tiroirs et une colonne vitrée assortie.',
+    images: armadaImages,
+    finishes: ['Crème brillant', 'Tissu gris', 'Détails brun et doré'],
+    includes: [
+      'Lit double capitonné',
+      'Large tête de lit avec éclairages',
+      'Deux tables de chevet à tiroirs',
+      'Grande armoire avec vitrines latérales',
+      'Coiffeuse avec miroir éclairé',
+      'Colonne vitrée et pouf assorti',
+    ],
+    details: [
+      'Ensemble complet',
+      'Tête de lit éclairée',
+      'Nombreux rangements',
       'Livraison sur demande',
     ],
   },

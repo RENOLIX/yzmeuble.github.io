@@ -22,7 +22,7 @@ function ScrollToTop() {
 function Logo() {
   return (
     <Link to="/" className="logo" aria-label="YZ Meuble, accueil">
-      <img src="/yzmeuble.github.io/images/logo-yz-meuble.png" alt="YZ Meuble — Meubles et mobilier d’intérieur" />
+      <img src="/images/logo-yz-meuble.png" alt="YZ Meuble — Meubles et mobilier d’intérieur" />
     </Link>
   )
 }
